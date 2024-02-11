@@ -243,12 +243,12 @@ _='''===========================================================================
 ================<---{ SQL CONNECTION }--->=====================================================================
 ============================================================================================================'''
 
-mydb = sql.connect(host="localhost",
-                   user="root",
-                   password="<password>",
-                   database="phonepe_pulse_data"
-                   )
-mycursor = mydb.cursor(buffered=True)
+# mydb = sql.connect(host="localhost",
+#                    user="root",
+#                    password="<password>",
+#                    database="phonepe_pulse_data"
+#                    )
+# mycursor = mydb.cursor(buffered=True)
 
 #<===( SQL Query To Create AGGREGATED TRANSACTIONS Table )====================================================>
 
