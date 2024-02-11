@@ -304,7 +304,7 @@ _='''===========================================================================
 #     mycursor.execute(sql, tuple(row))
 #     mydb.commit()
 
-import pandas as pd
+
 
 # Direct URLs of the raw CSV files
 #<============<---{ PHONEPE PULSE DATA: TRANSACTION & USER  }--->=============>
@@ -335,7 +335,10 @@ _='''===========================================================================
 ============================================================================================================'''
 
 #<===( CONVERSIONS TO INDAIN CURRENCY FORMAT )================================================================>
-locale.setlocale(locale.LC_MONETARY, 'en_IN')
+try:
+    locale.setlocale(locale.LC_MONETARY, 'en_IN')
+except locale.Error:
+    locale.setlocale(locale.LC_MONETARY, 'en_US.UTF-8')
 
 def inr_format(num):
     a = locale.currency(int(num), grouping=True)
