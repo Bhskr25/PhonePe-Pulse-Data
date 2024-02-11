@@ -388,20 +388,16 @@ def main():
                     object-fit:contain
                     }
                     </style>"""
-
-    logo = Image.open(
-        r'C:\Users\prana\OneDrive\Desktop\Projects\Phonepe\images\phonepe_logo.png')
-
+    
     # <--- Set Page Configuration ------------------------------------------->
     st.set_page_config(page_title='PhonePe Pulsle Data Visulaization',
-                    page_icon=logo,
+                    page_icon='https://github.com/Bhskr25/PhonePe-Pulse-Data/assets/95600191/981a284d-182a-4227-8ac4-2d644f4b1af7',
                     layout='wide',
                     initial_sidebar_state='expanded')
 
     st.markdown(css_styles, unsafe_allow_html=True)
 
-    img = Image.open(
-        r'C:\Users\prana\OneDrive\Desktop\Projects\Phonepe\images\phonepe.png')
+    img = 'https://github.com/Bhskr25/PhonePe-Pulse-Data/assets/95600191/81e65ce0-5f55-48b9-9e50-d75ec6deca72'
     st.markdown(image_css, unsafe_allow_html=True)
 
     st.markdown(
