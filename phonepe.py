@@ -245,7 +245,7 @@ _='''===========================================================================
 
 mydb = sql.connect(host="localhost",
                    user="root",
-                   password="Pranay@25",
+                   password="<password>",
                    database="phonepe_pulse_data"
                    )
 mycursor = mydb.cursor(buffered=True)
