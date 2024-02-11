@@ -13,221 +13,221 @@ import plotly.express as px
 import numpy as np
 import locale
 
-_='''==========================================================================================================
-================<---{ DATA EXTRACTION AND TRANSFORMATION }--->=================================================
-============================================================================================================'''
+# _='''==========================================================================================================
+# ================<---{ DATA EXTRACTION AND TRANSFORMATION }--->=================================================
+# ============================================================================================================'''
 
-#<============<---{ AGGREGATED TRANSACTIONS DATA }--->========================================================>
-path_1 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/aggregated/transaction/country/india/state/"
-agg_trans_list = os.listdir(path_1)
+# #<============<---{ AGGREGATED TRANSACTIONS DATA }--->========================================================>
+# path_1 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/aggregated/transaction/country/india/state/"
+# agg_trans_list = os.listdir(path_1)
 
-columns_1 = {'State': [], 'Year': [], 'Quarter': [], 'Transaction_Type': [
-], 'Transaction_Count': [], 'Transaction_Amount': []}
+# columns_1 = {'State': [], 'Year': [], 'Quarter': [], 'Transaction_Type': [
+# ], 'Transaction_Count': [], 'Transaction_Amount': []}
 
-for state in agg_trans_list:
-    curr_state = path_1+state+'/'
-    agg_year_list = os.listdir(curr_state)
+# for state in agg_trans_list:
+#     curr_state = path_1+state+'/'
+#     agg_year_list = os.listdir(curr_state)
 
-    for year in agg_year_list:
-        curr_year = curr_state+year+'/'
-        agg_file_list = os.listdir(curr_year)
+#     for year in agg_year_list:
+#         curr_year = curr_state+year+'/'
+#         agg_file_list = os.listdir(curr_year)
 
-        for file in agg_file_list:
-            curr_file = curr_year+file
-            data = open(curr_file, 'r')
-            A = json.load(data)
+#         for file in agg_file_list:
+#             curr_file = curr_year+file
+#             data = open(curr_file, 'r')
+#             A = json.load(data)
 
-            for i in A['data']['transactionData']:
-                name = i['name']
-                count = i['paymentInstruments'][0]['count']
-                amount = i['paymentInstruments'][0]['amount']
-                columns_1['Transaction_Type'].append(name)
-                columns_1['Transaction_Count'].append(count)
-                columns_1['Transaction_Amount'].append(amount)
-                columns_1['State'].append(state)
-                columns_1['Year'].append(year)
-                columns_1['Quarter'].append(int(file.strip('.json')))
+#             for i in A['data']['transactionData']:
+#                 name = i['name']
+#                 count = i['paymentInstruments'][0]['count']
+#                 amount = i['paymentInstruments'][0]['amount']
+#                 columns_1['Transaction_Type'].append(name)
+#                 columns_1['Transaction_Count'].append(count)
+#                 columns_1['Transaction_Amount'].append(amount)
+#                 columns_1['State'].append(state)
+#                 columns_1['Year'].append(year)
+#                 columns_1['Quarter'].append(int(file.strip('.json')))
 
-df_agg_trans = pd.DataFrame(columns_1)
+# df_agg_trans = pd.DataFrame(columns_1)
 
-#<============<---{ AGGREGATED USER DATA }--->================================================================>
-path_2 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/aggregated/user/country/india/state/"
-agg_user_list = os.listdir(path_2)
-columns_2 = {'State': [], 'Year': [], 'Quarter': [], 'Brands': [], 'Count': [], 'Percentage': []}
+# #<============<---{ AGGREGATED USER DATA }--->================================================================>
+# path_2 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/aggregated/user/country/india/state/"
+# agg_user_list = os.listdir(path_2)
+# columns_2 = {'State': [], 'Year': [], 'Quarter': [], 'Brands': [], 'Count': [], 'Percentage': []}
 
-for state in agg_user_list:
-    curr_state = path_2+state+'/'
-    agg_year_list = os.listdir(curr_state)
+# for state in agg_user_list:
+#     curr_state = path_2+state+'/'
+#     agg_year_list = os.listdir(curr_state)
 
-    for year in agg_year_list:
-        curr_year = curr_state+year+'/'
-        agg_file_list = os.listdir(curr_year)
+#     for year in agg_year_list:
+#         curr_year = curr_state+year+'/'
+#         agg_file_list = os.listdir(curr_year)
 
-        for file in agg_file_list:
-            curr_file = curr_year+file
-            data = open(curr_file, 'r')
-            B = json.load(data)
-        try:
-            for i in B["data"]["usersByDevice"]:
-                brand_name = i["brand"]
-                counts = i["count"]
-                percents = i["percentage"]
-                columns_2["Brands"].append(brand_name)
-                columns_2["Count"].append(counts)
-                columns_2["Percentage"].append(percents)
-                columns_2["State"].append(state)
-                columns_2["Year"].append(year)
-                columns_2["Quarter"].append(int(file.strip('.json')))
-        except:
-            pass
-df_agg_user = pd.DataFrame(columns_2)
-#<============<---{ MAP TRANSACTIONS DATA }--->===============================================================>
+#         for file in agg_file_list:
+#             curr_file = curr_year+file
+#             data = open(curr_file, 'r')
+#             B = json.load(data)
+#         try:
+#             for i in B["data"]["usersByDevice"]:
+#                 brand_name = i["brand"]
+#                 counts = i["count"]
+#                 percents = i["percentage"]
+#                 columns_2["Brands"].append(brand_name)
+#                 columns_2["Count"].append(counts)
+#                 columns_2["Percentage"].append(percents)
+#                 columns_2["State"].append(state)
+#                 columns_2["Year"].append(year)
+#                 columns_2["Quarter"].append(int(file.strip('.json')))
+#         except:
+#             pass
+# df_agg_user = pd.DataFrame(columns_2)
+# #<============<---{ MAP TRANSACTIONS DATA }--->===============================================================>
 
-path_3 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/map/transaction/hover/country/india/state/"
-map_trans_list = os.listdir(path_3)
+# path_3 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/map/transaction/hover/country/india/state/"
+# map_trans_list = os.listdir(path_3)
 
-columns_3 = {'State': [], 'Year': [], 'Quarter': [], 'District': [], 'Count': [],'Amount': []}
+# columns_3 = {'State': [], 'Year': [], 'Quarter': [], 'District': [], 'Count': [],'Amount': []}
 
-for state in map_trans_list:
-    cur_state = path_3 + state + "/"
-    map_year_list = os.listdir(cur_state)
+# for state in map_trans_list:
+#     cur_state = path_3 + state + "/"
+#     map_year_list = os.listdir(cur_state)
 
-    for year in map_year_list:
-        cur_year = cur_state + year + "/"
-        map_file_list = os.listdir(cur_year)
+#     for year in map_year_list:
+#         cur_year = cur_state + year + "/"
+#         map_file_list = os.listdir(cur_year)
 
-        for file in map_file_list:
-            cur_file = cur_year + file
-            data = open(cur_file, 'r')
-            C = json.load(data)
+#         for file in map_file_list:
+#             cur_file = cur_year + file
+#             data = open(cur_file, 'r')
+#             C = json.load(data)
 
-            for i in C["data"]["hoverDataList"]:
-                district = i["name"]
-                count = i["metric"][0]["count"]
-                amount = i["metric"][0]["amount"]
-                columns_3["District"].append(district)
-                columns_3["Count"].append(count)
-                columns_3["Amount"].append(amount)
-                columns_3['State'].append(state)
-                columns_3['Year'].append(year)
-                columns_3['Quarter'].append(int(file.strip('.json')))
+#             for i in C["data"]["hoverDataList"]:
+#                 district = i["name"]
+#                 count = i["metric"][0]["count"]
+#                 amount = i["metric"][0]["amount"]
+#                 columns_3["District"].append(district)
+#                 columns_3["Count"].append(count)
+#                 columns_3["Amount"].append(amount)
+#                 columns_3['State'].append(state)
+#                 columns_3['Year'].append(year)
+#                 columns_3['Quarter'].append(int(file.strip('.json')))
 
-df_map_trans = pd.DataFrame(columns_3)
+# df_map_trans = pd.DataFrame(columns_3)
 
-#<============<---{ MAP USER DATA }--->=======================================================================>
+# #<============<---{ MAP USER DATA }--->=======================================================================>
 
-path_4 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/map/user/hover/country/india/state/"
+# path_4 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/map/user/hover/country/india/state/"
 
-map_user_list = os.listdir(path_4)
+# map_user_list = os.listdir(path_4)
 
-columns_4 = {"State": [], "Year": [], "Quarter": [], "District": [], "RegisteredUser": [], "AppOpens": []}
+# columns_4 = {"State": [], "Year": [], "Quarter": [], "District": [], "RegisteredUser": [], "AppOpens": []}
 
-for state in map_user_list:
-    cur_state = path_4 + state + "/"
-    map_year_list = os.listdir(cur_state)
+# for state in map_user_list:
+#     cur_state = path_4 + state + "/"
+#     map_year_list = os.listdir(cur_state)
 
-    for year in map_year_list:
-        cur_year = cur_state + year + "/"
-        map_file_list = os.listdir(cur_year)
+#     for year in map_year_list:
+#         cur_year = cur_state + year + "/"
+#         map_file_list = os.listdir(cur_year)
 
-        for file in map_file_list:
-            cur_file = cur_year + file
-            data = open(cur_file, 'r')
-            D = json.load(data)
+#         for file in map_file_list:
+#             cur_file = cur_year + file
+#             data = open(cur_file, 'r')
+#             D = json.load(data)
 
-            for i in D["data"]["hoverData"].items():
-                district = i[0]
-                registereduser = i[1]["registeredUsers"]
-                appOpens = i[1]['appOpens']
-                columns_4["District"].append(district)
-                columns_4["RegisteredUser"].append(registereduser)
-                columns_4["AppOpens"].append(appOpens)
-                columns_4['State'].append(state)
-                columns_4['Year'].append(year)
-                columns_4['Quarter'].append(int(file.strip('.json')))
+#             for i in D["data"]["hoverData"].items():
+#                 district = i[0]
+#                 registereduser = i[1]["registeredUsers"]
+#                 appOpens = i[1]['appOpens']
+#                 columns_4["District"].append(district)
+#                 columns_4["RegisteredUser"].append(registereduser)
+#                 columns_4["AppOpens"].append(appOpens)
+#                 columns_4['State'].append(state)
+#                 columns_4['Year'].append(year)
+#                 columns_4['Quarter'].append(int(file.strip('.json')))
 
-df_map_user = pd.DataFrame(columns_4)
+# df_map_user = pd.DataFrame(columns_4)
 
-#<============<---{ TOP TRANSACTIONS DATA }--->===============================================================>
+# #<============<---{ TOP TRANSACTIONS DATA }--->===============================================================>
 
-path_5 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/top/transaction/country/india/state/"
-top_trans_list = os.listdir(path_5)
-columns_5 = {'State': [], 'Year': [], 'Quarter': [], 'Pincode': [], 'Transaction_count': [],
-             'Transaction_amount': []}
+# path_5 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/top/transaction/country/india/state/"
+# top_trans_list = os.listdir(path_5)
+# columns_5 = {'State': [], 'Year': [], 'Quarter': [], 'Pincode': [], 'Transaction_count': [],
+#              'Transaction_amount': []}
 
-for state in top_trans_list:
-    cur_state = path_5 + state + "/"
-    top_year_list = os.listdir(cur_state)
+# for state in top_trans_list:
+#     cur_state = path_5 + state + "/"
+#     top_year_list = os.listdir(cur_state)
 
-    for year in top_year_list:
-        cur_year = cur_state + year + "/"
-        top_file_list = os.listdir(cur_year)
+#     for year in top_year_list:
+#         cur_year = cur_state + year + "/"
+#         top_file_list = os.listdir(cur_year)
 
-        for file in top_file_list:
-            cur_file = cur_year + file
-            data = open(cur_file, 'r')
-            E = json.load(data)
+#         for file in top_file_list:
+#             cur_file = cur_year + file
+#             data = open(cur_file, 'r')
+#             E = json.load(data)
 
-            for i in E['data']['pincodes']:
-                name = i['entityName']
-                count = i['metric']['count']
-                amount = i['metric']['amount']
-                columns_5['Pincode'].append(name)
-                columns_5['Transaction_count'].append(count)
-                columns_5['Transaction_amount'].append(amount)
-                columns_5['State'].append(state)
-                columns_5['Year'].append(year)
-                columns_5['Quarter'].append(int(file.strip('.json')))
-df_top_trans = pd.DataFrame(columns_5)
+#             for i in E['data']['pincodes']:
+#                 name = i['entityName']
+#                 count = i['metric']['count']
+#                 amount = i['metric']['amount']
+#                 columns_5['Pincode'].append(name)
+#                 columns_5['Transaction_count'].append(count)
+#                 columns_5['Transaction_amount'].append(amount)
+#                 columns_5['State'].append(state)
+#                 columns_5['Year'].append(year)
+#                 columns_5['Quarter'].append(int(file.strip('.json')))
+# df_top_trans = pd.DataFrame(columns_5)
 
-#<============<---{ TOP USER DATA }--->========================================================>
+# #<============<---{ TOP USER DATA }--->========================================================>
 
-path_6 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/top/user/country/india/state/"
-top_user_list = os.listdir(path_6)
-columns_6 = {'State': [], 'Year': [], 'Quarter': [], 'Pincode': [], 'RegisteredUsers': []}
+# path_6 = "C:/Users/prana/OneDrive/Desktop/Projects/Phonepe/pulse/data/top/user/country/india/state/"
+# top_user_list = os.listdir(path_6)
+# columns_6 = {'State': [], 'Year': [], 'Quarter': [], 'Pincode': [], 'RegisteredUsers': []}
 
-for state in top_user_list:
-    cur_state = path_6 + state + "/"
-    top_year_list = os.listdir(cur_state)
+# for state in top_user_list:
+#     cur_state = path_6 + state + "/"
+#     top_year_list = os.listdir(cur_state)
 
-    for year in top_year_list:
-        cur_year = cur_state + year + "/"
-        top_file_list = os.listdir(cur_year)
+#     for year in top_year_list:
+#         cur_year = cur_state + year + "/"
+#         top_file_list = os.listdir(cur_year)
 
-        for file in top_file_list:
-            cur_file = cur_year + file
-            data = open(cur_file, 'r')
-            F = json.load(data)
+#         for file in top_file_list:
+#             cur_file = cur_year + file
+#             data = open(cur_file, 'r')
+#             F = json.load(data)
 
-            for i in F['data']['pincodes']:
-                name = i['name']
-                registeredUsers = i['registeredUsers']
-                columns_6['Pincode'].append(name)
-                columns_6['RegisteredUsers'].append(registeredUsers)
-                columns_6['State'].append(state)
-                columns_6['Year'].append(year)
-                columns_6['Quarter'].append(int(file.strip('.json')))
-df_top_user = pd.DataFrame(columns_6)
+#             for i in F['data']['pincodes']:
+#                 name = i['name']
+#                 registeredUsers = i['registeredUsers']
+#                 columns_6['Pincode'].append(name)
+#                 columns_6['RegisteredUsers'].append(registeredUsers)
+#                 columns_6['State'].append(state)
+#                 columns_6['Year'].append(year)
+#                 columns_6['Quarter'].append(int(file.strip('.json')))
+# df_top_user = pd.DataFrame(columns_6)
 
-#<===( DATA TRANSFORMATION )================================================================>
-d = [df_agg_trans, df_agg_user, df_map_trans,
-     df_map_user, df_top_trans, df_top_user]
+# #<===( DATA TRANSFORMATION )================================================================>
+# d = [df_agg_trans, df_agg_user, df_map_trans,
+#      df_map_user, df_top_trans, df_top_user]
 
-for d_i in d:
-    #  States
-    d_i['State'] = d_i['State'].replace(
-        'andaman-&-nicobar-islands', 'andaman & nicobar')
-    d_i['State'] = d_i['State'].replace(
-        'dadra-&-nagar-haveli-&-daman-&-diu', 'dadra and nagar haveli and daman and diu')
-    d_i['State'] = d_i['State'].str.replace('-', ' ')
-    d_i['State'] = d_i['State'].apply(lambda x: x.title())
+# for d_i in d:
+#     #  States
+#     d_i['State'] = d_i['State'].replace(
+#         'andaman-&-nicobar-islands', 'andaman & nicobar')
+#     d_i['State'] = d_i['State'].replace(
+#         'dadra-&-nagar-haveli-&-daman-&-diu', 'dadra and nagar haveli and daman and diu')
+#     d_i['State'] = d_i['State'].str.replace('-', ' ')
+#     d_i['State'] = d_i['State'].apply(lambda x: x.title())
 
-    #  Quarter
-    d_i['Quarter'] = d_i['Quarter'].apply(lambda x: str(x))
-    d_i['Quarter'] = (d_i['Quarter']).replace('1', 'Q1 (Jan - Mar)')
-    d_i['Quarter'] = (d_i['Quarter']).replace('2', 'Q2 (Apr - Jun)')
-    d_i['Quarter'] = (d_i['Quarter']).replace('3', 'Q3 (Jul - Sep)')
-    d_i['Quarter'] = (d_i['Quarter']).replace('4', 'Q4 (Oct - Dec)')
+#     #  Quarter
+#     d_i['Quarter'] = d_i['Quarter'].apply(lambda x: str(x))
+#     d_i['Quarter'] = (d_i['Quarter']).replace('1', 'Q1 (Jan - Mar)')
+#     d_i['Quarter'] = (d_i['Quarter']).replace('2', 'Q2 (Apr - Jun)')
+#     d_i['Quarter'] = (d_i['Quarter']).replace('3', 'Q3 (Jul - Sep)')
+#     d_i['Quarter'] = (d_i['Quarter']).replace('4', 'Q4 (Oct - Dec)')
 
 
 #<===( CONVERSION OF DATAFRAMES TO CSV FILES )================================================================>
@@ -304,6 +304,31 @@ mycursor = mydb.cursor(buffered=True)
 #     mycursor.execute(sql, tuple(row))
 #     mydb.commit()
 
+import pandas as pd
+
+# Direct URLs of the raw CSV files
+#<============<---{ PHONEPE PULSE DATA: TRANSACTION & USER  }--->=============>
+
+df_agg_trans_url = "https://raw.githubusercontent.com/Bhskr25/PhonePe-Pulse-Data/main/Pulse%20Data/df_agg_trans.csv"
+df_agg_user_url = "https://raw.githubusercontent.com/Bhskr25/PhonePe-Pulse-Data/main/Pulse%20Data/df_agg_user.csv"
+dfmap_trans_url = "https://raw.githubusercontent.com/Bhskr25/PhonePe-Pulse-Data/main/Pulse%20Data/df_map_trans.csv"
+df_map_user_url = "https://raw.githubusercontent.com/Bhskr25/PhonePe-Pulse-Data/main/Pulse%20Data/df_map_user.csv"
+df_top_trans_url = "https://raw.githubusercontent.com/Bhskr25/PhonePe-Pulse-Data/main/Pulse%20Data/df_top_trans.csv"
+df_top_user_url = "https://raw.githubusercontent.com/Bhskr25/PhonePe-Pulse-Data/main/Pulse%20Data/df_top_user.csv"
+
+#<============<---{ INDAIN STATES AND DISTRICTS LOCATION TRACES DATA FOR GEOJSON PLOTTING  }--->=============>
+geo_code_url = "https://raw.githubusercontent.com/Bhskr25/PhonePe-Pulse-Data/main/Pulse%20Data/state.csv"
+geo_dist_url = "https://raw.githubusercontent.com/Bhskr25/PhonePe-Pulse-Data/main/Pulse%20Data/districts.csv"
+
+# Read the CSV files into DataFrames
+df_agg_trans = pd.read_csv(df_agg_trans_url)
+df_agg_user = pd.read_csv(df_agg_user_url)
+dfmap_trans = pd.read_csv(dfmap_trans_url)
+df_map_user = pd.read_csv(df_map_user_url)
+df_top_trans = pd.read_csv(df_top_trans_url)
+df_top_user = pd.read_csv(df_top_user_url)
+geo_code = pd.read_csv(geo_code_url)
+geo_dist = pd.read_csv(geo_dist_url)
 
 _='''==========================================================================================================
 ================<---{ NUMBER FORMATTING AND CONVERSIONS }--->==================================================
@@ -345,15 +370,6 @@ def format_number1(num):  # transaction str
         return f"₹{num/100000:.2f} L"
     else:
         return str(num)
-    
-
-#<============<---{ INDAIN STATES AND DISTRICTS LOCATION TRACES DATA FOR GEOJSON PLOTTING  }--->=============>
-geo_code = pd.read_csv(
-    r'C:\Users\prana\OneDrive\Desktop\Projects\Phonepe\pulse_data_csvfiles\state.csv')
-geo_dist = pd.read_csv(
-    r'C:\Users\prana\OneDrive\Desktop\Projects\Phonepe\pulse_data_csvfiles\districts.csv')
-
-
 
 _='''==========================================================================================================
 ================<---{ STREAMLIT WEB APPLICATION }--->==========================================================
