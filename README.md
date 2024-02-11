@@ -32,11 +32,9 @@ The PhonePe Pulse Data Visualization Dashboard is an interactive web application
 
 #### Visualization Dashboard 
   <p><img src='https://github.com/Bhskr25/PhonePe-Pulse-Data/assets/95600191/9e65ed16-027d-47af-90b5-8c5c05700fb5' width='auto'></p>
-
-#### Analysis using plots
-  <p><img src='https://github.com/Bhskr25/PhonePe-Pulse-Data/assets/95600191/bf2c802c-e6f2-4b0c-a9f9-3656eda7ebc2' width='auto></p>
 ---
-## Prerequests and Needs
+       
+#### Prerequests and Needs
 The needs of this project can be categorized into several key aspects. Here is a list of the essential needs
 
 1. **Python Libraries:**
