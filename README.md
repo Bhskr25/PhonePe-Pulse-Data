@@ -53,16 +53,13 @@ The needs of this project can be categorized into several key aspects. Here is a
 4. **Database Services:**
    - MySQL database should be available or set up for data analysis and transformation to get required results from the pulse data.
 
-5. **Data Warehousing Process:**
-   - There is a need for a functioning process to store YouTube data in MongoDB and PostgreSQL databases.
-
-6. **Data Analysis and Visualization:**
+5. **Data Analysis and Visualization:**
    - Users might require basic understanding and knowledge of Pandas and Plotly for data analysis, and streamlit to visualize the data.
 
-7. **Environment Setup:**
+6. **Environment Setup:**
     - Proper Python environment setup with necessary dependencies installed.
 
-8. **Internet Connection:**
+7. **Internet Connection:**
     - An active internet connection is needed to fetch data from the YouTube API.
 ---
 ## Getting Started
